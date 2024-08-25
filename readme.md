@@ -22,7 +22,7 @@
     1) nodemon.json for development perpose
     2) ecosystem.json for production perpose pm2 setup etc
 
-3) eslint setup
+3) commitlint setup
   1)npm i @commitlint/cli @commitlint/config-conventional -D
   2) make "commit-msg" file in husk folder and add
  ` #!usr/bin/env sh
@@ -32,7 +32,11 @@
   3) make commitlint.config.js on root directory
   add document to commitlint.config.js
   4) now you have add prefix
-  
+
+4) eslint setup
+ 1) npm i --save-dev @eslint/js @types/eslint__js typescript-eslint
+ 2) add eslint.config.mjs 
+ 3)npx eslint .
 
 
 
