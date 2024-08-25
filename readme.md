@@ -36,7 +36,7 @@
 4) eslint setup
  1) npm i --save-dev @eslint/js @types/eslint__js typescript-eslint
  2) add eslint.config.mjs 
- 3)npx eslint .
+ 3) npx eslint .
  4) add pre-commit script
  5) add scripts in package.json
   "lint-staged": {
@@ -49,6 +49,16 @@
 5) prettier setup
   1) npm i --save-dev --save-exact prettier
   2) npm i --save-dev eslint-config-prettier
+  3) add scripts in package.json like eslint
+
+6) dotenv-flow
+  1) npm i dotenv-flow cross-env
+  2) change dev script to " cross-env NODE_ENV=development nodemon src/server.ts"
+  3) change start script to " cross-env NODE_ENV=production node dist/server.js" 
+  make sure you have .env.development & .env.production
+  4) add config files config.ts 
+  
+  
   
 
 
