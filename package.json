@@ -12,11 +12,13 @@
   "license": "MIT",
   "description": "",
   "devDependencies": {
+    "@commitlint/cli": "^19.4.0",
+    "@commitlint/config-conventional": "^19.2.2",
     "@types/node": "^22.5.0",
     "husky": "^9.1.5",
     "lint-staged": "^15.2.9",
     "nodemon": "^3.1.4",
-    "ts": "^0.2.2",
+    "ts": "^0.0.0",
     "ts-node": "^10.9.2"
   }
 }
