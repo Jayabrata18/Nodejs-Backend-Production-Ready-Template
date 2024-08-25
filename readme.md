@@ -57,8 +57,8 @@
   3) change start script to " cross-env NODE_ENV=production node dist/server.js" 
   make sure you have .env.development & .env.production
   4) add config files config.ts 
-  
-  
+
+7)   
   
 
 
