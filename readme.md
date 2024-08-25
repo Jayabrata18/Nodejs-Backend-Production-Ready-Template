@@ -7,10 +7,12 @@
  2) npx husky init
 
 2) ts setup
+
   1) npm i ts -D
-  2)npx tsc --init
+  2) npx tsc --init
 
   tsconfig --config
+
     1) rootdir -- /src
     2) outDir  -- /dist
     3) "noImplicitAny": true
@@ -23,7 +25,7 @@
     2) ecosystem.json for production perpose pm2 setup etc
 
 3) commitlint setup
-  1)npm i @commitlint/cli @commitlint/config-conventional -D
+  1) npm i @commitlint/cli @commitlint/config-conventional -D
   2) make "commit-msg" file in husk folder and add
  ` #!usr/bin/env sh
  . "$(dirname  -- "$0")/_/husky.sh"

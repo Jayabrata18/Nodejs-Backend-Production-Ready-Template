@@ -17,7 +17,6 @@
   "description": "",
   "lint-staged": {
     "*.ts": [
-      "npm run lint:fix",
       "npm run format:fix"
     ]
   },
