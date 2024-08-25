@@ -18,5 +18,10 @@
 
   3) npm i -D @types/node 
   4) npm i ts-node -D 
+    
+    1) nodemon.json for development perpose
+    2) ecosystem.json for production perpose pm2 setup etc
+
+3) 
 
 
