@@ -3,14 +3,20 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "dist": "npx tsc",
+    "dev": "nodemon src/app.ts",
+    "start": "node dist/app.js",
     "prepare": "husky"
   },
   "author": "JOY",
   "license": "MIT",
   "description": "",
   "devDependencies": {
+    "@types/node": "^22.5.0",
     "husky": "^9.1.5",
-    "lint-staged": "^15.2.9"
+    "lint-staged": "^15.2.9",
+    "nodemon": "^3.1.4",
+    "ts": "^0.2.2",
+    "ts-node": "^10.9.2"
   }
 }
