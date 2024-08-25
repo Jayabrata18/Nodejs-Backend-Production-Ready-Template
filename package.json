@@ -6,8 +6,10 @@
     "dist": "npx tsc",
     "dev": "nodemon src/server.ts",
     "start": "node dist/server.js",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
+    "format:check": "prettier . --check",
+    "format:fix": "prettier . --fix",
     "prepare": "husky"
   },
   "author": "JOY",
@@ -15,7 +17,7 @@
   "description": "",
   "lint-staged": {
     "*.ts": [
-      "npm run lint:fix"
+      "npm run format:fix"
     ]
   },
   "devDependencies": {
@@ -24,9 +26,11 @@
     "@eslint/js": "^9.9.1",
     "@types/eslint__js": "^8.42.3",
     "@types/node": "^22.5.0",
+    "eslint-config-prettier": "^9.1.0",
     "husky": "^9.1.5",
     "lint-staged": "^15.2.9",
     "nodemon": "^3.1.4",
+    "prettier": "3.3.3",
     "ts": "^0.0.0",
     "ts-node": "^10.9.2",
     "typescript-eslint": "^8.2.0"

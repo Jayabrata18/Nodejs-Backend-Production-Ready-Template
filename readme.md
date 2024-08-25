@@ -37,6 +37,19 @@
  1) npm i --save-dev @eslint/js @types/eslint__js typescript-eslint
  2) add eslint.config.mjs 
  3)npx eslint .
+ 4) add pre-commit script
+ 5) add scripts in package.json
+  "lint-staged": {
+    "*.ts": [
+      "npm run lint:fix"
+    ]
+  },
+  before pushing it checks it
+  
+5) prettier setup
+  1) npm i --save-dev --save-exact prettier
+  2) npm i --save-dev eslint-config-prettier
+  
 
 
 
