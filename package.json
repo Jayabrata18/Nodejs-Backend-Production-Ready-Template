@@ -1,0 +1,11 @@
+{
+  "name": "ts-backend-prduction-templete",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "JOY",
+  "license": "MIT",
+  "description": ""
+}
