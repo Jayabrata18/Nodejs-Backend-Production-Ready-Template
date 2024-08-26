@@ -6,7 +6,12 @@ import config from "../config/config";
 import path from "path";
 import * as sourceMapSupport from "source-map-support";
 import { blue, red, yellow, green, magenta } from "colorette";
+import 'winston-mongodb';
+import { MongoDBTransportInstance } from "winston-mongodb";
+
+
 sourceMapSupport.install();
+
 const colorizelevel = (level: string) => {
     switch (level) {
         case "INFO":
@@ -83,9 +88,28 @@ const FileTransport = (): Array<FileTransportInstance> => {
         })
     ]
 }
+
+const MongodbTransport = (): Array<MongoDBTransportInstance> => {
+    return [
+        new transports.MongoDB({
+            level: "info",
+            db: config.DATABASE_URL as string,
+            format: format.combine(format.timestamp(), FileLogFormat),
+            metaKey: "meta",
+            expireAfterSeconds: 3600 * 24 * 30,
+            capped: true,
+            collection: "application-logs",
+            options: {
+                useUnifiedTopology: true,
+                useNewUrlParser: true,
+                useFindAndModify: false
+            }
+        })
+    ]
+}
 export default createLogger({
     defaultMeta: {
         meta: {}
     },
-    transports: [...FileTransport(), ...consoleTransport()]
+    transports: [...FileTransport(), ...MongodbTransport(), ...consoleTransport()]
 })
