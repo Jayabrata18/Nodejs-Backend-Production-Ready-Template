@@ -81,6 +81,9 @@
 
 11) mongodb connection & logs
    1) npm i mongooses winston-mongodb   
+
+12) migretion
+   1) npm i ts-migrate-mongoose   
   
 
 
