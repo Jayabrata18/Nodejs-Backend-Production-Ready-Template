@@ -5,13 +5,25 @@ import { EApplicationEnviorment } from "../constant/application";
 import config from "../config/config";
 import path from "path";
 import * as sourceMapSupport from "source-map-support";
-
+import { blue, red, yellow, green, magenta } from "colorette";
 sourceMapSupport.install();
+const colorizelevel = (level: string) => {
+    switch (level) {
+        case "INFO":
+            return blue(level)
+        case "WARN":
+            return yellow(level);
+        case "ERROR":
+            return red(level);
+        default:
+            return level;
+    }
+}
 
 const consoleLogFormat = format.printf((info) => {
     const { level, message, timestamp, meta = {} } = info;
-    const customLevel = level.toUpperCase();
-    const customTimestamp = timestamp.slice(0, 19).replace("T", " ");
+    const customLevel = colorizelevel(level.toUpperCase());
+    const customTimestamp = green(timestamp.slice(0, 19).replace("T", " "));
     const customMessage = message
     const customMeta = util.inspect(meta, {
         depth: null,
@@ -19,7 +31,7 @@ const consoleLogFormat = format.printf((info) => {
         compact: true,
         showHidden: true
     });
-    const customlog = `${customLevel} [${customTimestamp}] ${customMessage}\n${'META'}: ${customMeta}\n`;
+    const customlog = `${customLevel} [${customTimestamp}] ${customMessage}\n${magenta('META')}: ${customMeta}\n`;
     return customlog;
 
 })

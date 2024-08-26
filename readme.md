@@ -76,6 +76,8 @@
    4) add import * as sourceMapSupport from "source-map-support";
        sourceMapSupport.install(); in logger file
 
+10) colourfull terminal
+   1) npm i colorette
   
 
 
