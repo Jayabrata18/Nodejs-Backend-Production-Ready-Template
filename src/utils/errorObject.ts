@@ -3,6 +3,7 @@ import { THttpError } from "../types/types";
 import responseMessage from "../constant/responseMessage";
 import config from "../config/config";
 import { EApplicationEnviorment } from "../constant/application";
+import logger from "./logger";
 
 export default (err: Error | unknown, req: Request, errorStatusCode: 500): THttpError => {
     const errorObj: THttpError = {
@@ -19,7 +20,7 @@ export default (err: Error | unknown, req: Request, errorStatusCode: 500): THttp
     };
 
     //log
-    console.error(`CONTROLLER_ERROR`, {
+    logger.error(`CONTROLLER_ERROR`, {
         meta: errorObj,
     });
 

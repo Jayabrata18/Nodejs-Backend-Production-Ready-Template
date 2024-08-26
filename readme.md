@@ -60,7 +60,22 @@
   make sure you have .env.development & .env.production
   4) add config files config.ts 
 
-7)   
+7)   error handler
+
+
+8) logging
+
+  1) npm i winston
+  2) create logger
+  3) add logs file outside src directory
+
+9) sourceMap
+   1) npm i source-map-support
+   2) npm i @types/source-map-support -D 
+   3) make   "sourceMap": true, in tsconfig.json
+   4) add import * as sourceMapSupport from "source-map-support";
+       sourceMapSupport.install(); in logger file
+
   
 
 

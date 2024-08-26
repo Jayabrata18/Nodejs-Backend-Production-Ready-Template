@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { THttpResponse } from "../types/types";
 import { EApplicationEnviorment } from "../constant/application";
 import config from "../config/config";
+import logger from "./logger";
 
 export default (req: Request, res: Response, responseStatusCode: number, responseMessage: string, data: unknown = null): void => {
     const response: THttpResponse = {
@@ -17,7 +18,7 @@ export default (req: Request, res: Response, responseStatusCode: number, respons
     };
 
     //log
-    console.info(`CONTROLLER_RESPONSE`, {
+    logger.info(`CONTROLLER_RESPONSE`, {
         meta: response,
     })
 
