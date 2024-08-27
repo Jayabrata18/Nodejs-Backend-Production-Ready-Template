@@ -6,7 +6,7 @@ export default function (next: NextFunction, err: Error | unknown, req: Request,
     return next(error);
 }
 // }
-// export default function htttpError(
+// export default function httpError(
 //     next: NextFunction,
 //     err: Error | unknown,
 //     req: Request,

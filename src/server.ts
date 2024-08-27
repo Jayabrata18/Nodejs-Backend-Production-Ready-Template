@@ -1,6 +1,7 @@
 import app from "./app";
 
 import config from './config/config';
+import { initRateLimiter } from "./config/rateLimiter";
 import databaseService from "./service/databaseService";
 import logger from "./utils/logger";
 
@@ -26,6 +27,8 @@ const server = app.listen(config.PORT);
         } else {
             logger.error('DATABASE_CONNECTION_FAILED: No connection object returned.');
         }
+        initRateLimiter(connection);
+        logger.info('RATE_LIMIT_MONGO_INITIALIZED');
         logger.info(`APPLICATION_STARTED`, {
             meta: {
                 PORT: config.PORT,

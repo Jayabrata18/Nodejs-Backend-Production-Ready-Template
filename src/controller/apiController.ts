@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import httpResponse from "../utils/httpResponse";
 import responseMessage from "../constant/responseMessage";
-import htttpError from "../utils/htttpError";
+import htttpError from "../utils/httpError";
 import quicker from "../utils/quicker";
 
 export default {

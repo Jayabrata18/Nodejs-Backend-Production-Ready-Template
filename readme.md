@@ -86,7 +86,9 @@
    1) npm i ts-migrate-mongoose   
 
 13) healthcheck
-14) helmet & cors   
+14) helmet & cors  & Ratelimiter
+  1) npm i cors helmet
+  2) npm i rate-limiter-flexible 
   
 
 

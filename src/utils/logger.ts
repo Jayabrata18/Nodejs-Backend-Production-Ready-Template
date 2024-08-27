@@ -102,7 +102,7 @@ const MongodbTransport = (): Array<MongoDBTransportInstance> => {
             options: {
                 useUnifiedTopology: true,
                 useNewUrlParser: true,
-                useFindAndModify: false
+                // useFindAndModify: false
             }
         })
     ]
