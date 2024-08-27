@@ -3,11 +3,24 @@ import path from 'path';
 import router from './routers/apiRouter';
 import globalErrorHandler from './middleware/globalErrorHandler';
 import responseMessage from './constant/responseMessage';
+import helmet from 'helmet';
+import cors from 'cors';
 // import htttpError from './utils/htttpError';
 
 const app: Application = express();
 
 //middleware
+app.use(express.urlencoded({ extended: true }));
+app.use(helmet());
+app.use(cors({
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'HEAD'],
+    origin: process.env.CORS_ORIGIN || '*',
+    credentials: true,
+    // allowedHeaders: ['Content-Type', 'Authorization'],
+    // exposedHeaders: ['X-Custom-Header-1', 'X-Custom-Header-2'],
+    // maxAge: 600, // 10 minutes
+
+}));
 app.use(express.json());
 // static assets in public folder available for everyone
 app.use(express.static(path.join(__dirname, "../", "public")));

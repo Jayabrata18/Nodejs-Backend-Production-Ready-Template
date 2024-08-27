@@ -84,6 +84,9 @@
 
 12) migretion
    1) npm i ts-migrate-mongoose   
+
+13) healthcheck
+14) helmet & cors   
   
 
 
