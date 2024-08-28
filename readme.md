@@ -6,6 +6,8 @@
 
 
 
+
+
 ### 1. Husky Setup
 
 Husky is used to manage Git hooks, and Lint-Staged ensures that only staged files are linted before a commit. Follow these steps to set up Husky and Lint-Staged:
@@ -39,11 +41,11 @@ Commitlint helps ensure that commit messages follow a consistent style, making y
    // commitlint.config.js
    module.exports = {
     extends: ["@commitlint/cli", "@commitlint/config-conventional"],
-    rules: {
+      rules: {
         "type-enum": [2, "always", ["feat", "fix", "docs", "style", "refactor", "perf", "test", "build", "ci", "chore", "revert"]],
         "subject-case": [0, "always", "sentence-case"],
+      }
     }
-}
    ```
  Configuration Breakdown:
 
@@ -85,10 +87,12 @@ This configuration ensures that your commit messages adhere to a consistent form
 ESLint is a tool for identifying and fixing problems in JavaScript and TypeScript code. Below are the steps to set up ESLint in your project:
 
 1. Install ESLint, TypeScript ESLint, and necessary types as development dependencies:
+
    ```bash
    npm install --save-dev @eslint/js @types/eslint__js typescript-eslint
    ```
 2.	Create an eslint.config.mjs file in the root directory of your project with the following content:
+
    ```javascript
    // eslint.config.mjs
   import eslint from 'eslint/js';
@@ -116,15 +120,18 @@ ESLint is a tool for identifying and fixing problems in JavaScript and TypeScrip
    });
    ```
 3.	Run ESLint across your project to check for any issues:
+
 	```bash
 	npx eslint .
 	```
 4.	Add a pre-commit script to automatically lint staged files before committing:
-	•	In the .husky/pre-commit file, add:
+	- In the .husky/pre-commit file, add:
+
     ```bash
     npx lint-staged
     ```
 5.	Add the following configuration to your package.json to ensure only staged .ts files are linted:
+
     ```bash
     "lint-staged": {
       "*.ts": [
@@ -134,33 +141,25 @@ ESLint is a tool for identifying and fixing problems in JavaScript and TypeScrip
   ```
   ### Configuration Breakdown:
 
-- **Imports**:
-  - **`eslint`**: Importing the core ESLint configuration from the ESLint package.
-  - **`tseslint`**: Importing TypeScript-specific ESLint configuration.
-  - **`eslintConfigPrettier`**: Importing Prettier configuration for ESLint, which ensures ESLint and Prettier work together without conflict.
 
-- **`export default tseslint.config({...})`**:
-  - This is the main export of the ESLint configuration using the TypeScript ESLint setup.
-
-
-  - **`parserOptions`**:
+- **`parserOptions`**:
     - **`project: true`**: Enables project-based linting, meaning it will use the **`tsconfig.json`** settings.
     - **`tsconfigRootDir: import.meta.dirname`**: Specifies the root directory of your TypeScript configuration, using the directory of the current module.
 
 - **`files`**:
-  - Specifies that ESLint should only target **`"**/*.ts"`** files, meaning it will lint all TypeScript files in your project.
+    - Specifies that ESLint should only target **`"**/*.ts"`** files, meaning it will lint all TypeScript files in your project.
 
 - **`extends`**:
-  - **`eslint.configs.recommended`**: Extends the recommended ESLint rules.
-  - **`...tseslint.configs.recommendedTypeChecked`**: Spreads the recommended TypeScript rules that include type-checking.
-  - **`eslintConfigPrettier`**: Extends the Prettier configuration to ensure there are no conflicts between ESLint and Prettier.
+    - **`eslint.configs.recommended`**: Extends the recommended ESLint rules.
+    - **`...tseslint.configs.recommendedTypeChecked`**: Spreads the recommended TypeScript rules that include type-checking.
+    - **`eslintConfigPrettier`**: Extends the Prettier configuration to ensure there are no conflicts between ESLint and Prettier.
 
 - **`rules`**:
-  - **`'no-console': 'error'`**: Disallows the use of **`console`** statements in the code. If used, it will throw an error.
-  - **`'no-useless-catch': 0`**: Disables the rule that prevents unnecessary **`catch`** blocks.
-  - **`quotes: ["error", "double", { allowTemplateLiterals: true }]`**:
-    - Enforces the use of **double quotes** for strings.
-    - **`allowTemplateLiterals: true`**: Allows the use of template literals even if single or double quotes are enforced.
+    - **`'no-console': 'error'`**: Disallows the use of **`console`** statements in the code. If used, it will throw an error.
+    - **`'no-useless-catch': 0`**: Disables the rule that prevents unnecessary **`catch`** blocks.
+    - **`quotes: ["error", "double", { allowTemplateLiterals: true }]`**:
+        - Enforces the use of **double quotes** for strings.
+        - **`allowTemplateLiterals: true`**: Allows the use of template literals even if single or double quotes are enforced.
 
 This configuration ensures that your TypeScript code follows best practices and maintains consistency in formatting, while also integrating smoothly with Prettier for code formatting.
 
@@ -169,17 +168,20 @@ This configuration ensures that your TypeScript code follows best practices and 
 Prettier is an opinionated code formatter that helps maintain consistent code style across your project. Follow these steps to set up Prettier in your project:
 
 1. **Install Prettier and ESLint Prettier Configuration**:
+
    ```bash
    npm install --save-dev --save-exact prettier
    npm install --save-dev eslint-config-prettier
    ```
 2.	Add Prettier Scripts to package.json:
 To integrate Prettier with your project’s build and linting scripts, add the following scripts to your package.json:
+
    ```json
     "format:check": "prettier . --check",
     "format:fix": "prettier . --fix",
     ```
 3. Add in package.json
+
     ```json
    "lint-staged": {
     "*.ts": [
@@ -250,23 +252,28 @@ This configuration ensures that your code is formatted consistently according to
 To set up TypeScript for your project, follow these steps:
 
 1.  Install TypeScript:
+
    ```bash
    npm install ts --save-dev
    ```
 2.	Initialize TypeScript Configuration:
+
    ```bash
    npx tsc --init
    ```
 3.	Install Type Definitions:
+
    ```bash
    npm install --save-dev @types/node
    ```
 4.	Install ts-node for Running TypeScript Files:
+
    ```bash
    npm install --save-dev ts-node
    ```
 5.	Configure nodemon for Development:
 Create a nodemon.json file for development purposes with the following configuration:
+
    ```json
    {
   "ext": ".ts",
@@ -345,38 +352,37 @@ Create a nodemon.json file for development purposes with the following configura
 2.	Create your environment variable files:
 	1.	.env.development for the development environment.
 	2.	.env.production for the production environment.
-These files should contain the necessary variables such as:
    
     ```json
-   ENV=development_or_production
-   PORT=your_port_number
-   SERVER_URL=your_server_url
-   DATABASE_URL=your_database_url
+        ENV=development_or_production
+        PORT=your_port_number
+        SERVER_URL=your_server_url
+        DATABASE_URL=your_database_url
    ```
 3. Update the dev and start scripts in your package.json:
 
    ```json
-    {
-     "scripts": {
-        "dev": "cross-env NODE_ENV=development nodemon src/server.ts",
-        "start": "cross-env NODE_ENV=production node dist/server.js"
-               }
-    }
+        {
+        "scripts": {
+            "dev": "cross-env NODE_ENV=development nodemon src/server.ts",
+            "start": "cross-env NODE_ENV=production node dist/server.js"
+                }
+        }
    ```
    
-4. 	Add the config.ts file to manage the environment variables in your project:
+4. Add the config.ts file to manage the environment variables in your project:
 
-    ```json
-     import dotenvFlow from "dotenv-flow";
+    ```javascript
+        import dotenvFlow from "dotenv-flow";
 
-     dotenvFlow.config();
+        dotenvFlow.config();
 
-     export default {
-       ENV: process.env.ENV,
-       PORT: process.env.PORT,
-       SERVER_URL: process.env.SERVER_URL,
-       DATABASE_URL: process.env.DATABASE_URL,
-     };
+        export default {
+            ENV: process.env.ENV,
+            PORT: process.env.PORT,
+            SERVER_URL: process.env.SERVER_URL,
+            DATABASE_URL: process.env.DATABASE_URL,
+        };
     ```
 ### 7.  Error Handling and Logging
 
@@ -413,7 +419,7 @@ In your tsconfig.json, enable source maps by setting:
 3.	Integrate Source Map Support in Logger:
 In the logger file, add the following: 
 
-   ```json
+   ```javascript
    import * as sourceMapSupport from "source-map-support";
    
    sourceMapSupport.install();
