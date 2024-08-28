@@ -3,14 +3,15 @@
 Husky is used to manage Git hooks, and Lint-Staged ensures that only staged files are linted before a commit. Follow these steps to set up Husky and Lint-Staged:
 
 1. Install Husky and Lint-Staged as development dependencies:
+
     ```bash
     npm install husky lint-staged -D
     ```
 2. Initialize Husky in your project:
 
-```bash
-npx husky init
-```
+   ```bash
+   npx husky init
+   ```
 
 3. After initialization, you can configure Husky hooks in the .husky/ directory.
 
@@ -19,27 +20,28 @@ npx husky init
 Commitlint helps ensure that commit messages follow a consistent style, making your commit history more readable and maintainable. Follow these steps to set up Commitlint:
 
 1. Install Commitlint CLI and the conventional config as development dependencies:
+
     ```bash
     npm install @commitlint/cli @commitlint/config-conventional -D
     ```
 2. Create a commit-msg hook file in the .husky/ directory and add the following script to it:
 
-```bash
-npx --no-install commitlint --edit "$1"
-```
+   ```bash
+   npx --no-install commitlint --edit "$1"
+   ```
 
 3. Create a commitlint.config.js file in the root directory of your project. This file should include the configuration for Commitlint. For example I have Implemented:
 
-```json
-// commitlint.config.js
-module.exports = {
- extends: ["@commitlint/cli", "@commitlint/config-conventional"],
- rules: {
-     "type-enum": [2, "always", ["feat", "fix", "docs", "style", "refactor", "perf", "test", "build", "ci", "chore", "revert"]],
-     "subject-case": [0, "always", "sentence-case"],
- }
-}
-```
+   ```json
+   // commitlint.config.js
+    module.exports = {
+      extends: ["@commitlint/cli", "@commitlint/config-conventional"],
+        rules: {
+           "type-enum": [2, "always", ["feat", "fix", "docs", "style", "refactor", "perf", "test", "build", "ci", "chore", "revert"]],
+           "subject-case": [0, "always", "sentence-case"],
+       }
+    }
+   ```
 
 Configuration Breakdown:
 
@@ -84,19 +86,20 @@ This configuration ensures that your commit messages adhere to a consistent form
 ESLint is a tool for identifying and fixing problems in JavaScript and TypeScript code. Below are the steps to set up ESLint in your project:
 
 1. Install ESLint, TypeScript ESLint, and necessary types as development dependencies:
+
     ```bash
     npm install --save-dev @eslint/js @types/eslint__js typescript-eslint
     ```
 2. Create an eslint.config.mjs file in the root directory of your project with the following content:
 
-```javascript
-// eslint.config.mjs
-import eslint from "eslint/js"
-import tseslint from "typescript-eslint"
-import eslintConfigPrettier from "eslint-config-prettier"
+    ```javascript
+   // eslint.config.mjs
+   import eslint from "eslint/js"
+   import tseslint from "typescript-eslint"
+   import eslintConfigPrettier from "eslint-config-prettier"
 
-export default tseslint.config({
-    languageOptions: {
+    export default tseslint.config({
+      languageOptions: {
         parserOptions: {
             project: true,
             tsconfigRootDir: import.meta.dirname
@@ -109,20 +112,23 @@ export default tseslint.config({
         "no-useless-catch": 0,
         quotes: ["error", "double", { allowTemplateLiterals: true }]
     }
-})
-```
+  })
+    ```
 
 3. Run ESLint across your project to check for any issues:
+
     ```bash
     npx eslint .
     ```
 4. Add a pre-commit script to automatically lint staged files before committing:
    • In the .husky/pre-commit file, add:
+
     ```bash
     npx lint-staged
     ```
 5. Add the following configuration to your package.json to ensure only staged .ts files are linted:
-    ```bash
+
+    ```json
     "lint-staged": {
       "*.ts": [
         "npm run lint:fix"
@@ -130,24 +136,26 @@ export default tseslint.config({
     }
     ```
 
-````
+
 ### Configuration Breakdown:
 
-- **Imports**:
-- **`eslint`**: Importing the core ESLint configuration from the ESLint package.
-- **`tseslint`**: Importing TypeScript-specific ESLint configuration.
-- **`eslintConfigPrettier`**: Importing Prettier configuration for ESLint, which ensures ESLint and Prettier work together without conflict.
+-   **`Imports`**:
 
-- **`export default tseslint.config({...})`**:
-- This is the main export of the ESLint configuration using the TypeScript ESLint setup.
+    -   **`eslint`**: Importing the core ESLint configuration from the ESLint package.
+    -   **`tseslint`**: Importing TypeScript-specific ESLint configuration.
+    -   **`eslintConfigPrettier`**: Importing Prettier configuration for ESLint, which ensures ESLint and Prettier work together without conflict.
 
-- **`languageOptions`**:
-- **`parserOptions`**:
-  - **`project: true`**: Enables project-based linting, meaning it will use the **`tsconfig.json`** settings.
-  - **`tsconfigRootDir: import.meta.dirname`**: Specifies the root directory of your TypeScript configuration, using the directory of the current module.
+-    **`export default tseslint.config({...})`**:
+      -    This is the main export of the ESLint  configuration using the TypeScript ESLint setup.
 
-- **`files`**:
-- Specifies that ESLint should only target **`"**/*.ts"`** files, meaning it will lint all TypeScript files in your project.
+-    **`languageOptions`**:
+-    **`parserOptions`**:
+
+    -   **`project: true`**: Enables project-based linting, meaning it will use the **`tsconfig.json`** settings.
+    -   **`tsconfigRootDir: import.meta.dirname`**: Specifies the root directory of your TypeScript configuration, using the directory of the current module.
+
+-    **`files`**:
+    -   Specifies that ESLint should only target **`"**/*.ts"`** files, meaning it will lint all TypeScript files in your project.
 
 - **`extends`**:
 - **`eslint.configs.recommended`**: Extends the recommended ESLint rules.
@@ -168,42 +176,46 @@ This configuration ensures that your TypeScript code follows best practices and 
 Prettier is an opinionated code formatter that helps maintain consistent code style across your project. Follow these steps to set up Prettier in your project:
 
 1. **Install Prettier and ESLint Prettier Configuration**:
- ```bash
- npm install --save-dev --save-exact prettier
- npm install --save-dev eslint-config-prettier
-````
+
+    ```bash
+     npm install --save-dev --save-exact prettier
+     npm install --save-dev eslint-config-prettier
+    ```
 
 2. Add Prettier Scripts to package.json:
    To integrate Prettier with your project’s build and linting scripts, add the following scripts to your package.json:
 
-````json
- "format:check": "prettier . --check",
- "format:fix": "prettier . --fix",
- ```
+    ```json
+    "format:check": "prettier . --check",
+    "format:fix": "prettier . --fix",
+    ```
+
 3. Add in package.json
- ```json
-"lint-staged": {
- "*.ts": [
-   "npm run format:fix"
- ]
-},
- ```
+ 
+    ```json
+    "lint-staged": {
+     "*.ts": [
+        "npm run format:fix"
+      ]
+    },
+    ```
+
 4. Configure Prettier:
 Create a .prettierrc file in the root directory of your project with the following configuration:
 
-```json
-{
- "trailingComma": "none",
- "tabWidth": 4,
- "semi": false,
- "singleQuote": false,
- "doubleQuote": true,
- "bracketSameLine": true,
- "printWidth": 150,
- "singleAttributePerLine": true,
- "endOfLine": "crlf"
-}
-````
+    ```json
+      {
+      "trailingComma": "none",
+      "tabWidth": 4,
+      "semi": false,
+      "singleQuote": false,
+      "doubleQuote": true,
+      "bracketSameLine": true,
+      "printWidth": 150,
+      "singleAttributePerLine": true,
+      "endOfLine": "crlf"
+      }
+    ```
 
 ### Configuration Options:
 
@@ -263,31 +275,31 @@ To set up TypeScript for your project, follow these steps:
     ```
 2. Initialize TypeScript Configuration:
 
-```bash
-npx tsc --init
-```
+    ```bash
+    npx tsc --init
+    ```
 
 3. Install Type Definitions:
 
-```bash
-npm install --save-dev @types/node
-```
+    ```bash
+    npm install --save-dev @types/node
+    ```
 
 4. Install ts-node for Running TypeScript Files:
 
-```bash
-npm install --save-dev ts-node
-```
+    ```bash
+    npm install --save-dev ts-node
+    ```
 
 5. Configure nodemon for Development:
    Create a nodemon.json file for development purposes with the following configuration:
 
-```json
-{
-    "ext": ".ts",
-    "ignore": ["dist", "node_modules"]
-}
-```
+    ```json
+    {
+        "ext": ".ts",
+        "ignore": ["dist", "node_modules"]
+    }
+    ```
 
 -   **`"ext": ".ts"`**
     -   **Description**: Specifies the file extensions that nodemon will watch for changes.
