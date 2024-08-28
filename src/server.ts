@@ -13,7 +13,7 @@ const server = app.listen(config.PORT);
         const connection = await databaseService.connect();
 
         if (connection) {
-            logger.info('DATABASE_CONNECTION_ESTABLISHED', {
+            logger.info('MONGODB_DATABASE_CONNECTION_ESTABLISHED', {
                 meta: {
                     DATABASE_NAME: connection.name,
                     HOST: connection.host,

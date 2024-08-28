@@ -5,7 +5,7 @@
   "scripts": {
     "dist": "npx tsc",
     "dev": "cross-env NODE_ENV=development nodemon src/server.ts",
-    "start": "cross-env NODE_ENV=prduction node dist/server.js",
+    "start": "cross-env NODE_ENV=production node dist/server.js",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
     "format:check": "prettier . --check",
