@@ -112,7 +112,7 @@ ESLint is a tool for identifying and fixing problems in JavaScript and TypeScrip
         "no-useless-catch": 0,
         quotes: ["error", "double", { allowTemplateLiterals: true }]
     }
-  })
+   })
     ```
 
 3. Run ESLint across your project to check for any issues:
@@ -150,7 +150,6 @@ ESLint is a tool for identifying and fixing problems in JavaScript and TypeScrip
 
 -    **`languageOptions`**:
 -    **`parserOptions`**:
-
     -   **`project: true`**: Enables project-based linting, meaning it will use the **`tsconfig.json`** settings.
     -   **`tsconfigRootDir: import.meta.dirname`**: Specifies the root directory of your TypeScript configuration, using the directory of the current module.
 
