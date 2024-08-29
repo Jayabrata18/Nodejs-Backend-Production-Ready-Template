@@ -93,7 +93,7 @@ const MongodbTransport = (): Array<MongoDBTransportInstance> => {
     return [
         new transports.MongoDB({
             level: "info",
-            db: config.DATABASE_URL as string,
+            db: config.MONGODB_DATABASE_URL as string,
             format: format.combine(format.timestamp(), FileLogFormat),
             metaKey: "meta",
             expireAfterSeconds: 3600 * 24 * 30,
