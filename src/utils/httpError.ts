@@ -1,9 +1,9 @@
-import { NextFunction, Request } from "express";
-import errorObject from "./errorObject";
-
-export default function (next: NextFunction, err: Error | unknown, req: Request, errorStatusCode: 500): void {
-    const error = errorObject(err, req, errorStatusCode);
-    return next(error);
+/* eslint-disable @typescript-eslint/no-redundant-type-constituents */
+import { NextFunction, Request } from 'express';
+import errorObject from './errorObject';
+export default (nextFunc: NextFunction, err: Error | unknown, req: Request, errorStatusCode: 500 = 500): void => {
+    const errorObj = errorObject(err, req, errorStatusCode)
+    return nextFunc(errorObj)
 }
 // }
 // export default function httpError(

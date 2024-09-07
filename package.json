@@ -2,10 +2,10 @@
   "name": "ts-backend-prduction-templete",
   "version": "1.0.0",
   "main": "src/server.js",
-  "scripts": {
+   "scripts": {
     "dist": "npx tsc",
-    "dev": "cross-env NODE_ENV=development nodemon src/server.ts",
-    "start": "cross-env NODE_ENV=prduction node dist/server.js",
+    "dev": "cross-env NODE_ENV=development nodemon --legacy-watch src/server.ts",
+    "start": "cross-env NODE_ENV=production node dist/server.js",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
     "format:check": "prettier . --check",
@@ -19,6 +19,7 @@
   "description": "",
   "lint-staged": {
     "*.ts": [
+      "npm run lint:fix",
       "npm run format:fix"
     ]
   },
@@ -30,6 +31,7 @@
     "@types/eslint__js": "^8.42.3",
     "@types/express": "^4.17.21",
     "@types/node": "^22.5.0",
+    "@types/pg": "^8.11.8",
     "@types/source-map-support": "^0.5.10",
     "eslint-config-prettier": "^9.1.0",
     "husky": "^9.1.5",
@@ -49,6 +51,7 @@
     "express": "^4.19.2",
     "helmet": "^7.1.0",
     "mongoose": "^8.5.4",
+    "pg": "^8.12.0",
     "rate-limiter-flexible": "^5.0.3",
     "source-map-support": "^0.5.21",
     "ts-migrate-mongoose": "^3.8.3",
