@@ -23,16 +23,15 @@ app.use(cors({
 }));
 app.use(express.json());
 // static assets in public folder available for everyone
-app.use(express.static(path.join(__dirname, "../", "public")));
+app.use(express.static(path.join(__dirname, '../', 'public')));
 //router
-app.use("/api/v1", router);
-//global error handler
-app.use(globalErrorHandler);
+app.use('/api/v1', router);
 //404 handler
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 app.use((req: Request, res: Response, __: NextFunction) => {
     try {
         throw new Error(responseMessage.NOT_FOUND('route'));
-    } catch (err) {
+    } catch {
         res.status(404).json({
             success: false,
             statusCode: 404,
@@ -43,17 +42,23 @@ app.use((req: Request, res: Response, __: NextFunction) => {
             },
             message: responseMessage.NOT_FOUND('route'),
             data: {}
+        
         });
     }
+
 });
-
-// app.use((req: Request, _: Response, next: NextFunction) =>{
+// 404 Handler
+// app.use((req: Request, _: Response, next: NextFunction) => {
 //     try {
-//         throw new Error(responseMessage.NOT_FOUND('route'));
+//         throw new Error(responseMessage.NOT_FOUND('route'))
 //     } catch (err) {
-//         htttpError(next, err, req, 404)
-
+//         httpError(next, err, req, 404)
 //     }
-// }
+// })
+
+//global error handler
+app.use(globalErrorHandler);
+
+
 
 export default app;

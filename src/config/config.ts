@@ -1,4 +1,4 @@
-import dotenvFlow from "dotenv-flow";
+import dotenvFlow from 'dotenv-flow';
 
 dotenvFlow.config();
 

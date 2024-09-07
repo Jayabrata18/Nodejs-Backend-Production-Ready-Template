@@ -1,13 +1,13 @@
-import app from "./app";
+import app from './app';
 
 import config from './config/config';
-import { initRateLimiter } from "./config/rateLimiter";
-import databaseService from "./service/databaseService";
-import logger from "./utils/logger";
+import { initRateLimiter } from './config/rateLimiter';
+import databaseService from './service/databaseService';
+import logger from './utils/logger';
 
 const server = app.listen(config.PORT);
 
-; (async () => {
+; void (async () => {
     try {
 
         const mongoConnection = await databaseService.mongoConnect();

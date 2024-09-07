@@ -1,6 +1,6 @@
-import { Router } from "express";
-import apiController from "../controller/apiController";
-import rateLimit from "../middleware/rateLimit";
+import { Router } from 'express';
+import apiController from '../controller/apiController';
+import rateLimit from '../middleware/rateLimit';
 
 const router = Router();
 router.use(rateLimit);

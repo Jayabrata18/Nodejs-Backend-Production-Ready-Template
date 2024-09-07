@@ -1,6 +1,6 @@
-import mongoose from "mongoose"
-import config from "../config/config"
-import { Pool } from "pg";
+import mongoose from 'mongoose'
+import config from '../config/config'
+import { Pool } from 'pg';
 
 const pgPool = new Pool({
     host: config.POSTGRES_HOST,
